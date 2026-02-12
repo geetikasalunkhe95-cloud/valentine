@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Be My Valentine 💖</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: 'Comic Sans MS', cursive;
+      background: linear-gradient(135deg, #ffd6e8, #fff);
+      text-align: center;
+    }
+
+    h1 {
+      color: #ff4d88;
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+    }
+
+    img, video {
+      width: 90%;
+      max-width: 280px;
+      border-radius: 20px;
+      margin: 15px auto;
+      display: block;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      padding: 14px 24px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      min-width: 120px;
+    }
+
+    #yesBtn {
+      background-color: #ff4d88;
+      color: white;
+    }
+
+    #noBtn {
+      background-color: #cccccc;
+      color: black;
+    }
+
+    @media (max-width: 400px) {
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      button {
+        min-width: 100px;
+        font-size: 0.95rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1 id="message">Will you be my Valentine? 💌</h1>
+
+  <div id="media">
+    <img src="cats/cat1.jpg" alt="cute cat">
+  </div>
+
+  <div class="buttons">
+    <button id="yesBtn" onclick="yesClicked()">Yes 💖</button>
+    <button id="noBtn" onclick="noClicked()">No 😒</button>
+  </div>
+
+  <script>
+    let noCount = 0;
+
+    const messages = [
+      "nahi kyu bol raha hai be 😤",
+      "dont dare to say no again 😡",
+      "I hate you 😭",
+      "please say yess naa 🥺",
+      "this is your last chance 😠"
+    ];
+
+    const images = [
+      "cats/cat2.jpg",
+      "cats/cat3.jpg",
+      "cats/cat4.jpg",
+      "cats/cat5.jpg",
+      "cats/cat6.jpg"
+    ];
+
+    function noClicked() {
+      const noBtn = document.getElementById("noBtn");
+      const yesBtn = document.getElementById("yesBtn");
+      const message = document.getElementById("message");
+      const media = document.getElementById("media");
+
+      if (noCount < 5) {
+        message.innerText = messages[noCount];
+        media.innerHTML = `<img src="${images[noCount]}">`;
+
+        noBtn.style.transform = `scale(${1 - (noCount + 1) * 0.15})`;
+        yesBtn.style.transform = `scale(${1 + (noCount + 1) * 0.2})`;
+
+        noCount++;
+      } else {
+        noBtn.style.display = "none";
+        message.innerText = "Only YES is allowed now 😌";
+      }
+    }
+
+    function yesClicked() {
+      const message = document.getElementById("message");
+      const media = document.getElementById("media");
+      const buttons = document.querySelector(".buttons");
+
+      message.innerText = "AWWW I LOVE YOU JANNUU 💕🥹";
+      media.innerHTML = `
+        <video src="cats/cat7.mp4" autoplay loop muted playsinline></video>
+      `;
+      buttons.style.display = "none";
+    }
+  </script>
+
+</body>
+</html>
